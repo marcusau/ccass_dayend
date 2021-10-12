@@ -114,7 +114,7 @@ def trade_days_list(trade_day_url:str=config.etnet_trade_days_url):
 def get_trackback_day(scrapy_str: Union[str, date, datetime], shareholdingdates_dt: List[datetime],     trade_day_apply: bool = False,trade_day_forward:bool=False):
     period_start = shareholdingdates_dt[-1]
     if not trade_day_apply:
-        scrapy_dt = str2dt(scrapy_str)
+        scrapy_dt = str2dt(scrapy_str) if type(scrapy_str)==str else scrapy_str
 
         if scrapy_dt.weekday() is not 7 and scrapy_dt >= period_start and scrapy_dt is not None:
             print(f"scrapy_dt :{scrapy_dt}, weekday:  {calendar.day_name[scrapy_dt.weekday()]} and period start : {shareholdingdates_dt[-1]}")
